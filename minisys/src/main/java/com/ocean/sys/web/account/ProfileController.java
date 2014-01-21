@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.ocean.sys.entity.User;
+
+import com.ocean.sys.entity.RbacUser;
 import com.ocean.sys.service.account.AccountService;
 import com.ocean.sys.service.account.ShiroDbRealm.ShiroUser;
 
@@ -34,7 +35,7 @@ public class ProfileController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String update(@Valid @ModelAttribute("user") User user) {
+	public String update(@Valid @ModelAttribute("user") RbacUser user) {
 		accountService.updateUser(user);
 		updateCurrentUserName(user.getName());
 		return "redirect:/";

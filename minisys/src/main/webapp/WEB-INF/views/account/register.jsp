@@ -9,7 +9,7 @@
 	<script>
 		$(document).ready(function() {
 			//聚焦第一个输入框
-			$("#loginName").focus();
+			$("#loginId").focus();
 			//为inputForm注册validate函数
 			$("#inputForm").validate({
 				rules: {
@@ -32,9 +32,9 @@
 		<fieldset>
 			<legend><small>用户注册</small></legend>
 			<div class="control-group">
-				<label for="loginName" class="control-label">登录名:</label>
+				<label for="loginId" class="control-label">登录名:</label>
 				<div class="controls">
-					<input type="text" id="loginName" name="loginName" class="input-large required" minlength="3"/>
+					<input type="text" id="loginId" name="loginId" class="input-large required" minlength="3"/>
 				</div>
 			</div>
 			<div class="control-group">
@@ -44,15 +44,15 @@
 				</div>
 			</div>
 			<div class="control-group">
-				<label for="plainPassword" class="control-label">密码:</label>
+				<label for="password" class="control-label">密码:</label>
 				<div class="controls">
-					<input type="password" id="plainPassword" name="plainPassword" class="input-large required"/>
+					<input type="password" id="password" name="password" class="input-large required"/>
 				</div>
 			</div>
 			<div class="control-group">
 				<label for="confirmPassword" class="control-label">确认密码:</label>
 				<div class="controls">
-					<input type="password" id="confirmPassword" name="confirmPassword" class="input-large required" equalTo="#plainPassword"/>
+					<input type="password" id="confirmPassword" name="confirmPassword" class="input-large required" equalTo="#password"/>
 				</div>
 			</div>
 			<div class="form-actions">

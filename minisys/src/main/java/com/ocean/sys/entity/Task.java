@@ -15,7 +15,7 @@ public class Task extends IdEntity {
 
 	private String title;
 	private String description;
-	private User user;
+	private RbacUser user;
 
 	// JSR303 BeanValidator的校验规则
 	@NotBlank
@@ -38,11 +38,11 @@ public class Task extends IdEntity {
 	// JPA 基于USER_ID列的多对一关系定义
 	@ManyToOne
 	@JoinColumn(name = "user_id")
-	public User getUser() {
+	public RbacUser getUser() {
 		return user;
 	}
 
-	public void setUser(User user) {
+	public void setUser(RbacUser user) {
 		this.user = user;
 	}
 

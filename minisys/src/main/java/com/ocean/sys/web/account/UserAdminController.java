@@ -13,7 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import com.ocean.sys.entity.User;
+
+import com.ocean.sys.entity.RbacUser;
 import com.ocean.sys.service.account.AccountService;
 
 /**
@@ -30,7 +31,7 @@ public class UserAdminController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String list(Model model) {
-		List<User> users = accountService.getAllUser();
+		List<RbacUser> users = accountService.getAllUser();
 		model.addAttribute("users", users);
 
 		return "account/adminUserList";
@@ -43,17 +44,17 @@ public class UserAdminController {
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String update(@Valid @ModelAttribute("user") User user, RedirectAttributes redirectAttributes) {
+	public String update(@Valid @ModelAttribute("user") RbacUser user, RedirectAttributes redirectAttributes) {
 		accountService.updateUser(user);
-		redirectAttributes.addFlashAttribute("message", "更新用户" + user.getLoginName() + "成功");
+		redirectAttributes.addFlashAttribute("message", "更新用户" + user.getName() + "成功");
 		return "redirect:/admin/user";
 	}
 
 	@RequestMapping(value = "delete/{id}")
 	public String delete(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
-		User user = accountService.getUser(id);
+		RbacUser user = accountService.getUser(id);
 		accountService.deleteUser(id);
-		redirectAttributes.addFlashAttribute("message", "删除用户" + user.getLoginName() + "成功");
+		redirectAttributes.addFlashAttribute("message", "删除用户" + user.getName() + "成功");
 		return "redirect:/admin/user";
 	}
 

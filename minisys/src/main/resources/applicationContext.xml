@@ -30,6 +30,10 @@
 				<!-- 命名规则 My_NAME->MyName -->
 				<prop key="hibernate.ejb.naming_strategy">org.hibernate.cfg.ImprovedNamingStrategy</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.cache.use_query_cache">true</prop>
+				<prop key="hibernate.cache.use_second_level_cache">true</prop>
+				<prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
+				
 			</props>
 		</property>
 	</bean>

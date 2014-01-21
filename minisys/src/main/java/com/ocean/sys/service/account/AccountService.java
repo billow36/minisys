@@ -9,11 +9,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import com.ocean.sys.entity.User;
+
+import com.ocean.sys.entity.RbacUser;
+import com.ocean.sys.repository.RbacUserDao;
 import com.ocean.sys.repository.TaskDao;
-import com.ocean.sys.repository.UserDao;
 import com.ocean.sys.service.ServiceException;
 import com.ocean.sys.service.account.ShiroDbRealm.ShiroUser;
+
 import org.springside.modules.security.utils.Digests;
 import org.springside.modules.utils.Clock;
 import org.springside.modules.utils.Encodes;
@@ -34,32 +36,31 @@ public class AccountService {
 
 	private static Logger logger = LoggerFactory.getLogger(AccountService.class);
 
-	private UserDao userDao;
+	private RbacUserDao userDao;
 	private TaskDao taskDao;
 	private Clock clock = Clock.DEFAULT;
 
-	public List<User> getAllUser() {
-		return (List<User>) userDao.findAll();
+	public List<RbacUser> getAllUser() {
+		return (List<RbacUser>) userDao.findAll();
 	}
 
-	public User getUser(Long id) {
+	public RbacUser getUser(Long id) {
 		return userDao.findOne(id);
 	}
 
-	public User findUserByLoginName(String loginName) {
+	public RbacUser findUserByLoginName(String loginName) {
 		return userDao.findByLoginName(loginName);
 	}
 
-	public void registerUser(User user) {
+	public void registerUser(RbacUser user) {
 		entryptPassword(user);
-		user.setRoles("user");
-		user.setRegisterDate(clock.getCurrentDate());
+		user.setRegistTime(clock.getCurrentDate());
 
 		userDao.save(user);
 	}
 
-	public void updateUser(User user) {
-		if (StringUtils.isNotBlank(user.getPlainPassword())) {
+	public void updateUser(RbacUser user) {
+		if (StringUtils.isNotBlank(user.getPassword())) {
 			entryptPassword(user);
 		}
 		userDao.save(user);
@@ -93,16 +94,15 @@ public class AccountService {
 	/**
 	 * 设定安全的密码，生成随机的salt并经过1024次 sha-1 hash
 	 */
-	private void entryptPassword(User user) {
+	private void entryptPassword(RbacUser user) {
 		byte[] salt = Digests.generateSalt(SALT_SIZE);
 		user.setSalt(Encodes.encodeHex(salt));
-
-		byte[] hashPassword = Digests.sha1(user.getPlainPassword().getBytes(), salt, HASH_INTERATIONS);
+		byte[] hashPassword = Digests.sha1(user.getPassword().getBytes(), salt, HASH_INTERATIONS);
 		user.setPassword(Encodes.encodeHex(hashPassword));
 	}
 
 	@Autowired
-	public void setUserDao(UserDao userDao) {
+	public void setUserDao(RbacUserDao userDao) {
 		this.userDao = userDao;
 	}
 

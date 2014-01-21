@@ -1,15 +1,16 @@
 package com.ocean.sys.data;
 
-import com.ocean.sys.entity.User;
 import org.springside.modules.test.data.RandomData;
+
+import com.ocean.sys.entity.RbacUser;
 
 public class UserData {
 
-	public static User randomNewUser() {
-		User user = new User();
-		user.setLoginName(RandomData.randomName("user"));
+	public static RbacUser randomNewUser() {
+		RbacUser user = new RbacUser();
+		user.setLoginId(RandomData.randomName("user"));
 		user.setName(RandomData.randomName("User"));
-		user.setPlainPassword(RandomData.randomName("password"));
+		user.setPassword(RandomData.randomName("password"));
 
 		return user;
 	}

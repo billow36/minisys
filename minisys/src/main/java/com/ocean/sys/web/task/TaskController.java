@@ -16,10 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.ocean.sys.entity.RbacUser;
 import com.ocean.sys.entity.Task;
-import com.ocean.sys.entity.User;
 import com.ocean.sys.service.account.ShiroDbRealm.ShiroUser;
 import com.ocean.sys.service.task.TaskService;
+
 import org.springside.modules.web.Servlets;
 
 import com.google.common.collect.Maps;
@@ -79,7 +81,7 @@ public class TaskController {
 
 	@RequestMapping(value = "create", method = RequestMethod.POST)
 	public String create(@Valid Task newTask, RedirectAttributes redirectAttributes) {
-		User user = new User(getCurrentUserId());
+		RbacUser user = new RbacUser(getCurrentUserId());
 		newTask.setUser(user);
 
 		taskService.saveTask(newTask);

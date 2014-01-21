@@ -12,6 +12,7 @@
 		<springside.version>4.2.0</springside.version>
 		<spring.version>3.2.6.RELEASE</spring.version>
 		<hibernate.version>4.2.8.Final</hibernate.version>
+		<hibernate.search.version>4.4.2.Final</hibernate.search.version>
 		<spring-data-jpa.version>1.4.3.RELEASE</spring-data-jpa.version>
 		<tomcat-jdbc.version>7.0.47</tomcat-jdbc.version>
 		<sitemesh.version>2.4.2</sitemesh.version>
@@ -91,7 +92,17 @@
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
-
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-search</artifactId>
+			<version>${hibernate.search.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-ehcache</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+            
 		<!-- spring data access -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
