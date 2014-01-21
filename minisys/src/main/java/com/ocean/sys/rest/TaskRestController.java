@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.util.UriComponentsBuilder;
-import com.ocean.sys.entity.Task;
+import com.ocean.sys.entity.RbacTask;
 import com.ocean.sys.service.task.TaskService;
 import org.springside.modules.beanvalidator.BeanValidators;
 import org.springside.modules.web.MediaTypes;
@@ -43,14 +43,14 @@ public class TaskRestController {
 
 	@RequestMapping(method = RequestMethod.GET, produces = MediaTypes.JSON_UTF_8)
 	@ResponseBody
-	public List<Task> list() {
+	public List<RbacTask> list() {
 		return taskService.getAllTask();
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaTypes.JSON_UTF_8)
 	@ResponseBody
-	public Task get(@PathVariable("id") Long id) {
-		Task task = taskService.getTask(id);
+	public RbacTask get(@PathVariable("id") Long id) {
+		RbacTask task = taskService.getTask(id);
 		if (task == null) {
 			String message = "任务不存在(id:" + id + ")";
 			logger.warn(message);
@@ -61,7 +61,7 @@ public class TaskRestController {
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaTypes.JSON)
 	@ResponseBody
-	public ResponseEntity<?> create(@RequestBody Task task, UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<?> create(@RequestBody RbacTask task, UriComponentsBuilder uriBuilder) {
 		// 调用JSR303 Bean Validator进行校验, 异常将由RestExceptionHandler统一处理.
 		BeanValidators.validateWithException(validator, task);
 
@@ -78,7 +78,7 @@ public class TaskRestController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaTypes.JSON)
-	public ResponseEntity<?> update(@RequestBody Task task) {
+	public ResponseEntity<?> update(@RequestBody RbacTask task) {
 		// 调用JSR303 Bean Validator进行校验, 异常将由RestExceptionHandler统一处理.
 		BeanValidators.validateWithException(validator, task);
 		// 保存

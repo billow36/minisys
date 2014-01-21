@@ -1,7 +1,7 @@
 package com.ocean.sys.data;
 
 import com.ocean.sys.entity.RbacUser;
-import com.ocean.sys.entity.Task;
+import com.ocean.sys.entity.RbacTask;
 
 import org.springside.modules.test.data.RandomData;
 
@@ -12,8 +12,8 @@ import org.springside.modules.test.data.RandomData;
  */
 public class TaskData {
 
-	public static Task randomTask() {
-		Task task = new Task();
+	public static RbacTask randomTask() {
+		RbacTask task = new RbacTask();
 		task.setTitle(randomTitle());
 		RbacUser user = new RbacUser(1L);
 		task.setUser(user);

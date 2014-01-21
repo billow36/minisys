@@ -10,8 +10,8 @@ import org.hibernate.validator.constraints.NotBlank;
 
 //JPA标识
 @Entity
-@Table(name = "systask")
-public class Task extends IdEntity {
+@Table(name = "RBAC_TASK")
+public class RbacTask extends IdEntity {
 
 	private String title;
 	private String description;
@@ -37,7 +37,7 @@ public class Task extends IdEntity {
 
 	// JPA 基于USER_ID列的多对一关系定义
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "LOGIN_ID")
 	public RbacUser getUser() {
 		return user;
 	}

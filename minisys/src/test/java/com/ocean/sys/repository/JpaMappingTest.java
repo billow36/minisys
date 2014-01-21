@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.metamodel.EntityType;
 import javax.persistence.metamodel.Metamodel;
 
@@ -29,7 +30,8 @@ public class JpaMappingTest extends SpringTransactionalTestCase {
 
 		for (EntityType entityType : model.getEntities()) {
 			String entityName = entityType.getName();
-			em.createQuery("select o from " + entityName + " o").getResultList();
+			Query q =em.createQuery("select o from " + entityName + " o"); 
+			q.getResultList();
 			logger.info("ok: " + entityName);
 
 		}

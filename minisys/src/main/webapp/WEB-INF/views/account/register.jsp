@@ -13,12 +13,12 @@
 			//为inputForm注册validate函数
 			$("#inputForm").validate({
 				rules: {
-					loginName: {
-						remote: "${ctx}/register/checkLoginName"
+					loginId: {
+						remote: "${ctx}/register/checkLoginId"
 					}
 				},
 				messages: {
-					loginName: {
+					loginId: {
 						remote: "用户登录名已存在"
 					}
 				}

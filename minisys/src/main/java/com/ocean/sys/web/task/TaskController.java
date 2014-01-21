@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ocean.sys.entity.RbacUser;
-import com.ocean.sys.entity.Task;
+import com.ocean.sys.entity.RbacTask;
 import com.ocean.sys.service.account.ShiroDbRealm.ShiroUser;
 import com.ocean.sys.service.task.TaskService;
 
@@ -61,7 +61,7 @@ public class TaskController {
 		Map<String, Object> searchParams = Servlets.getParametersStartingWith(request, "search_");
 		Long userId = getCurrentUserId();
 
-		Page<Task> tasks = taskService.getUserTask(userId, searchParams, pageNumber, pageSize, sortType);
+		Page<RbacTask> tasks = taskService.getUserTask(userId, searchParams, pageNumber, pageSize, sortType);
 
 		model.addAttribute("tasks", tasks);
 		model.addAttribute("sortType", sortType);
@@ -74,13 +74,13 @@ public class TaskController {
 
 	@RequestMapping(value = "create", method = RequestMethod.GET)
 	public String createForm(Model model) {
-		model.addAttribute("task", new Task());
+		model.addAttribute("task", new RbacTask());
 		model.addAttribute("action", "create");
 		return "task/taskForm";
 	}
 
 	@RequestMapping(value = "create", method = RequestMethod.POST)
-	public String create(@Valid Task newTask, RedirectAttributes redirectAttributes) {
+	public String create(@Valid RbacTask newTask, RedirectAttributes redirectAttributes) {
 		RbacUser user = new RbacUser(getCurrentUserId());
 		newTask.setUser(user);
 
@@ -97,7 +97,7 @@ public class TaskController {
 	}
 
 	@RequestMapping(value = "update", method = RequestMethod.POST)
-	public String update(@Valid @ModelAttribute("task") Task task, RedirectAttributes redirectAttributes) {
+	public String update(@Valid @ModelAttribute("task") RbacTask task, RedirectAttributes redirectAttributes) {
 		taskService.saveTask(task);
 		redirectAttributes.addFlashAttribute("message", "更新任务成功");
 		return "redirect:/task/";

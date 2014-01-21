@@ -6,13 +6,13 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
-import com.ocean.sys.entity.Task;
+import com.ocean.sys.entity.RbacTask;
 
-public interface TaskDao extends PagingAndSortingRepository<Task, Long>, JpaSpecificationExecutor<Task> {
+public interface TaskDao extends PagingAndSortingRepository<RbacTask, Long>, JpaSpecificationExecutor<RbacTask> {
 
-	Page<Task> findByUserId(Long id, Pageable pageRequest);
+	Page<RbacTask> findByUserId(Long id, Pageable pageRequest);
 
 	@Modifying
-	@Query("delete from Task task where task.user.id=?1")
+	@Query("delete from RbacTask task where task.user.id=?1")
 	void deleteByUserId(Long id);
 }

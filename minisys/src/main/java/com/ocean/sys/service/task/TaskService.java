@@ -11,7 +11,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-import com.ocean.sys.entity.Task;
+import com.ocean.sys.entity.RbacTask;
 import com.ocean.sys.repository.TaskDao;
 import org.springside.modules.persistence.DynamicSpecifications;
 import org.springside.modules.persistence.SearchFilter;
@@ -25,11 +25,11 @@ public class TaskService {
 
 	private TaskDao taskDao;
 
-	public Task getTask(Long id) {
+	public RbacTask getTask(Long id) {
 		return taskDao.findOne(id);
 	}
 
-	public void saveTask(Task entity) {
+	public void saveTask(RbacTask entity) {
 		taskDao.save(entity);
 	}
 
@@ -37,14 +37,14 @@ public class TaskService {
 		taskDao.delete(id);
 	}
 
-	public List<Task> getAllTask() {
-		return (List<Task>) taskDao.findAll();
+	public List<RbacTask> getAllTask() {
+		return (List<RbacTask>) taskDao.findAll();
 	}
 
-	public Page<Task> getUserTask(Long userId, Map<String, Object> searchParams, int pageNumber, int pageSize,
+	public Page<RbacTask> getUserTask(Long userId, Map<String, Object> searchParams, int pageNumber, int pageSize,
 			String sortType) {
 		PageRequest pageRequest = buildPageRequest(pageNumber, pageSize, sortType);
-		Specification<Task> spec = buildSpecification(userId, searchParams);
+		Specification<RbacTask> spec = buildSpecification(userId, searchParams);
 
 		return taskDao.findAll(spec, pageRequest);
 	}
@@ -66,10 +66,10 @@ public class TaskService {
 	/**
 	 * 创建动态查询条件组合.
 	 */
-	private Specification<Task> buildSpecification(Long userId, Map<String, Object> searchParams) {
+	private Specification<RbacTask> buildSpecification(Long userId, Map<String, Object> searchParams) {
 		Map<String, SearchFilter> filters = SearchFilter.parse(searchParams);
 		filters.put("user.id", new SearchFilter("user.id", Operator.EQ, userId));
-		Specification<Task> spec = DynamicSpecifications.bySearchFilter(filters.values(), Task.class);
+		Specification<RbacTask> spec = DynamicSpecifications.bySearchFilter(filters.values(), RbacTask.class);
 		return spec;
 	}
 

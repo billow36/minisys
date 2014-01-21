@@ -8,7 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.test.context.ContextConfiguration;
-import com.ocean.sys.entity.Task;
+import com.ocean.sys.entity.RbacTask;
 import org.springside.modules.test.spring.SpringTransactionalTestCase;
 
 @ContextConfiguration(locations = { "/applicationContext.xml" })
@@ -19,7 +19,7 @@ public class TaskDaoTest extends SpringTransactionalTestCase {
 
 	@Test
 	public void findTasksByUserId() throws Exception {
-		Page<Task> tasks = taskDao.findByUserId(2L, new PageRequest(0, 100, Direction.ASC, "id"));
+		Page<RbacTask> tasks = taskDao.findByUserId(2L, new PageRequest(0, 100, Direction.ASC, "id"));
 		assertEquals(5, tasks.getContent().size());
 		assertEquals(new Long(1), tasks.getContent().get(0).getId());
 

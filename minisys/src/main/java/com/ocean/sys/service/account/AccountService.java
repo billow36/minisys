@@ -49,7 +49,7 @@ public class AccountService {
 	}
 
 	public RbacUser findUserByLoginName(String loginName) {
-		return userDao.findByLoginName(loginName);
+		return userDao.findByloginId(loginName);
 	}
 
 	public void registerUser(RbacUser user) {

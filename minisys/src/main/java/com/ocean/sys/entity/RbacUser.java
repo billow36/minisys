@@ -104,7 +104,7 @@ public class RbacUser extends DataEntity {
 	/**
 	 * @return the loginId
 	 */
-	@Column(name="LOGIN_ID",length=16)	
+	@Column(name="LOGIN_ID",length=16,unique=true)	
 	public String getLoginId() {
 		return loginId;
 	}
