@@ -13,26 +13,28 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
-@Table(name = "RBAC_PRIVILEGE")
+@Table(name = "RBAC_PMA")
 @DynamicInsert
 @DynamicUpdate
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class RbacPrivilege extends DataEntity {
+public class RbacPMA extends DataEntity {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private Long id;// 主键
-	private String privilegeName;
-	private int type;
-	private String privilegeDesc;
-	public RbacPrivilege() {
+	private RbacPrivilege privilege;
+	private RbacMenu menu;
+	private RbacAction action;
+
+	public RbacPMA() {
 
 	}
 
-	public RbacPrivilege(Long id) {
+	public RbacPMA(Long id) {
 		this.id = id;
 	}
+
 	/**
 	 * @return the id
 	 */
@@ -42,6 +44,7 @@ public class RbacPrivilege extends DataEntity {
 	public Long getId() {
 		return id;
 	}
+
 	/**
 	 * @param id
 	 *            the id to set
@@ -49,29 +52,28 @@ public class RbacPrivilege extends DataEntity {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	@Column(name = "PRIVILEGE_NAME" ,length=32)
-	public String getPrivilegeName() {
-		return privilegeName;
+
+	public RbacPrivilege getPrivilege() {
+		return privilege;
 	}
 
-	public void setPrivilegeName(String privilegeName) {
-		this.privilegeName = privilegeName;
-	}
-	@Column(name = "TYPE")
-	public int getType() {
-		return type;
+	public void setPrivilege(RbacPrivilege privilege) {
+		this.privilege = privilege;
 	}
 
-	public void setType(int type) {
-		this.type = type;
-	}
-	@Column(name = "PRIVILEGE_DESC" ,length=64)
-	public String getPrivilegeDesc() {
-		return privilegeDesc;
+	public RbacMenu getMenu() {
+		return menu;
 	}
 
-	public void setPrivilegeDesc(String privilegeDesc) {
-		this.privilegeDesc = privilegeDesc;
+	public void setMenu(RbacMenu menu) {
+		this.menu = menu;
 	}
 
+	public RbacAction getAction() {
+		return action;
+	}
+
+	public void setAction(RbacAction action) {
+		this.action = action;
+	}
 }

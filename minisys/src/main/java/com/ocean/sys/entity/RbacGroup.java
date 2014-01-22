@@ -13,26 +13,27 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
-@Table(name = "RBAC_PRIVILEGE")
+@Table(name = "RBAC_GROUP")
 @DynamicInsert
 @DynamicUpdate
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class RbacPrivilege extends DataEntity {
+public class RbacGroup extends DataEntity {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private Long id;// 主键
-	private String privilegeName;
-	private int type;
-	private String privilegeDesc;
-	public RbacPrivilege() {
+	private String groupName;
+	private String groupDesc;
+
+	public RbacGroup() {
 
 	}
 
-	public RbacPrivilege(Long id) {
+	public RbacGroup(Long id) {
 		this.id = id;
 	}
+
 	/**
 	 * @return the id
 	 */
@@ -42,6 +43,7 @@ public class RbacPrivilege extends DataEntity {
 	public Long getId() {
 		return id;
 	}
+
 	/**
 	 * @param id
 	 *            the id to set
@@ -49,29 +51,20 @@ public class RbacPrivilege extends DataEntity {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	@Column(name = "PRIVILEGE_NAME" ,length=32)
-	public String getPrivilegeName() {
-		return privilegeName;
+	@Column(name="GROUP_NAME",length=32)
+	public String getGroupName() {
+		return groupName;
 	}
 
-	public void setPrivilegeName(String privilegeName) {
-		this.privilegeName = privilegeName;
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
 	}
-	@Column(name = "TYPE")
-	public int getType() {
-		return type;
-	}
-
-	public void setType(int type) {
-		this.type = type;
-	}
-	@Column(name = "PRIVILEGE_DESC" ,length=64)
-	public String getPrivilegeDesc() {
-		return privilegeDesc;
+	@Column(name="GROUP_DESC",length=32)
+	public String getGroupDesc() {
+		return groupDesc;
 	}
 
-	public void setPrivilegeDesc(String privilegeDesc) {
-		this.privilegeDesc = privilegeDesc;
+	public void setGroupDesc(String groupDesc) {
+		this.groupDesc = groupDesc;
 	}
-
 }
