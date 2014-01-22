@@ -9,7 +9,7 @@
 	<script>
 		$(document).ready(function() {
 			//聚焦第一个输入框
-			$("#loginId").focus();
+			$("#loginId").blur();
 			//为inputForm注册validate函数
 			$("#inputForm").validate({
 				rules: {
