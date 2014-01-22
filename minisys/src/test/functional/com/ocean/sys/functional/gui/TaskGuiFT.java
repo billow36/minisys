@@ -1,15 +1,17 @@
 package com.ocean.sys.functional.gui;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import com.ocean.sys.data.TaskData;
-import com.ocean.sys.entity.Task;
-import com.ocean.sys.functional.BaseSeleniumTestCase;
 import org.springside.modules.test.category.Smoke;
+
+import com.ocean.sys.data.TaskData;
+import com.ocean.sys.entity.RbacTask;
+import com.ocean.sys.functional.BaseSeleniumTestCase;
 
 /**
  * 任务管理的功能测试, 测试页面JavaScript及主要用户故事流程.
@@ -40,7 +42,7 @@ public class TaskGuiFT extends BaseSeleniumTestCase {
 		// create
 		s.click(By.linkText("创建任务"));
 
-		Task task = TaskData.randomTask();
+		RbacTask task = TaskData.randomTask();
 		s.type(By.id("task_title"), task.getTitle());
 		s.click(By.id("submit_btn"));
 

@@ -14,7 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.client.HttpStatusCodeException;
 import org.springframework.web.client.RestTemplate;
 import com.ocean.sys.data.TaskData;
-import com.ocean.sys.entity.Task;
+import com.ocean.sys.entity.RbacTask;
 import com.ocean.sys.functional.BaseFunctionalTestCase;
 import org.springside.modules.mapper.JsonMapper;
 import org.springside.modules.test.category.Smoke;
@@ -30,7 +30,7 @@ public class TaskRestFT extends BaseFunctionalTestCase {
 
 	private final JsonMapper jsonMapper = new JsonMapper();
 
-	private static class TaskList extends ArrayList<Task> {
+	private static class TaskList extends ArrayList<RbacTask> {
 	}
 
 	private static String resoureUrl;
@@ -57,7 +57,7 @@ public class TaskRestFT extends BaseFunctionalTestCase {
 	@Test
 	@Category(Smoke.class)
 	public void getTask() {
-		Task task = restTemplate.getForObject(resoureUrl + "/{id}", Task.class, 1L);
+		RbacTask task = restTemplate.getForObject(resoureUrl + "/{id}", RbacTask.class, 1L);
 		assertEquals("Study PlayFramework 2.0", task.getTitle());
 	}
 
@@ -69,11 +69,11 @@ public class TaskRestFT extends BaseFunctionalTestCase {
 	public void createUpdateAndDeleteTask() {
 
 		// create
-		Task task = TaskData.randomTask();
+		RbacTask task = TaskData.randomTask();
 
 		URI taskUri = restTemplate.postForLocation(resoureUrl, task);
 		System.out.println(taskUri.toString());
-		Task createdTask = restTemplate.getForObject(taskUri, Task.class);
+		RbacTask createdTask = restTemplate.getForObject(taskUri, RbacTask.class);
 		assertEquals(task.getTitle(), createdTask.getTitle());
 
 		// update
@@ -83,14 +83,14 @@ public class TaskRestFT extends BaseFunctionalTestCase {
 
 		restTemplate.put(taskUri, task);
 
-		Task updatedTask = restTemplate.getForObject(taskUri, Task.class);
+		RbacTask updatedTask = restTemplate.getForObject(taskUri, RbacTask.class);
 		assertEquals(task.getTitle(), updatedTask.getTitle());
 
 		// delete
 		restTemplate.delete(taskUri);
 
 		try {
-			restTemplate.getForObject(taskUri, Task.class);
+			restTemplate.getForObject(taskUri, RbacTask.class);
 			fail("Get should fail while feth a deleted task");
 		} catch (HttpStatusCodeException e) {
 			assertEquals(HttpStatus.NOT_FOUND, e.getStatusCode());
@@ -101,7 +101,7 @@ public class TaskRestFT extends BaseFunctionalTestCase {
 	public void invalidInput() {
 
 		// create
-		Task titleBlankTask = new Task();
+		RbacTask titleBlankTask = new RbacTask();
 		try {
 			restTemplate.postForLocation(resoureUrl, titleBlankTask);
 			fail("Create should fail while title is blank");

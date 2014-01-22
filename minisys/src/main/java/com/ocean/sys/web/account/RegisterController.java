@@ -31,7 +31,8 @@ public class RegisterController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String register(@Valid RbacUser user, RedirectAttributes redirectAttributes) {
+	public String register(@Valid RbacUser user,
+			RedirectAttributes redirectAttributes) {
 		accountService.registerUser(user);
 		redirectAttributes.addFlashAttribute("username", user.getLoginId());
 		return "redirect:/login";
@@ -43,7 +44,6 @@ public class RegisterController {
 	@RequestMapping(value = "checkLoginId")
 	@ResponseBody
 	public String checkLoginId(@RequestParam("loginId") String loginId) {
-		System.out.println("验证方法触发："+loginId);
 		if (accountService.findUserByLoginName(loginId) == null) {
 			return "true";
 		} else {
