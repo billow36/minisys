@@ -13,25 +13,24 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
-@Table(name = "RBAC_PMA")
+@Table(name = "RBAC_USER_ROLE")
 @DynamicInsert
 @DynamicUpdate
 @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-public class RbacPMA extends DataEntity {
+public class RbacUserRole extends DataEntity {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private Long id;// 主键
-	private String privilegeId;
-	private String menuId;
-	private String actionId;
-
-	public RbacPMA() {
+	private Long roleId;//角色ID
+	private Long userId;//用户ID
+	
+	public RbacUserRole() {
 
 	}
 
-	public RbacPMA(Long id) {
+	public RbacUserRole(Long id) {
 		this.id = id;
 	}
 
@@ -52,29 +51,21 @@ public class RbacPMA extends DataEntity {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	@Column(name="PRIVILEGE_ID")
-	public String getPrivilegeId() {
-		return privilegeId;
+	@Column(name="ROLE_ID")
+	public Long getRoleId() {
+		return roleId;
 	}
 
-	public void setPrivilegeId(String privilegeId) {
-		this.privilegeId = privilegeId;
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
 	}
-	@Column(name="MENU_ID")
-	public String getMenuId() {
-		return menuId;
-	}
-
-	public void setMenuId(String menuId) {
-		this.menuId = menuId;
-	}
-	@Column(name="ACTION_ID")
-	public String getActionId() {
-		return actionId;
+	@Column(name="USER_ID")
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setActionId(String actionId) {
-		this.actionId = actionId;
+	public void setUserId(Long userId) {
+		this.userId = userId;
 	}
 
 }
