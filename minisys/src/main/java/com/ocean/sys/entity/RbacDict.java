@@ -27,7 +27,7 @@ public class RbacDict extends DataEntity {
 	private String value;
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="ID")
 	public Long getId() {
 		return id;
@@ -35,7 +35,6 @@ public class RbacDict extends DataEntity {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	@Id
 	@Column(name="NAME",length=32)
 	public String getName() {
 		return name;
