@@ -16,13 +16,12 @@ import org.hibernate.validator.constraints.NotBlank;
 @Table(name = "RBAC_TASK")
 public class RbacTask {
 	protected Long id;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String title;
 	private String description;
 	private RbacUser user;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Long getId() {
 		return id;
 	}

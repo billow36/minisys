@@ -38,9 +38,9 @@ public abstract class DataEntity extends BaseEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	protected String remarks;	// 备注
-	protected RbacUser createBy;	// 创建者
+	protected Long createBy;	// 创建者
 	protected Date createDate;// 创建日期
-	protected RbacUser updateBy;	// 更新者
+	protected Long updateBy;	// 更新者
 	protected Date updateDate;// 更新日期
 	protected String delFlag; // 删除标记（0：正常；1：删除；2：审核）
 	protected String description;
@@ -80,16 +80,12 @@ public abstract class DataEntity extends BaseEntity implements Serializable {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
-	
-	@JsonIgnore
-	@ManyToOne(fetch=FetchType.LAZY)
-	@NotFound(action = NotFoundAction.IGNORE)
-	@JoinColumn(name="CREATEOR")
-	public RbacUser getCreateBy() {
+	@Column(name="CREATEBY")
+	public Long getCreateBy() {
 		return createBy;
 	}
 
-	public void setCreateBy(RbacUser createBy) {
+	public void setCreateBy(Long createBy) {
 		this.createBy = createBy;
 	}
 
@@ -104,15 +100,12 @@ public abstract class DataEntity extends BaseEntity implements Serializable {
 		this.createDate = createDate;
 	}
 
-	@JsonIgnore
-	@ManyToOne(fetch=FetchType.LAZY)
-	@NotFound(action = NotFoundAction.IGNORE)
-	@JoinColumn(name="UPDATOR")
-	public RbacUser getUpdateBy() {
+	@Column(name="UPDATEBY")
+	public Long getUpdateBy() {
 		return updateBy;
 	}
 
-	public void setUpdateBy(RbacUser updateBy) {
+	public void setUpdateBy(Long updateBy) {
 		this.updateBy = updateBy;
 	}
 
