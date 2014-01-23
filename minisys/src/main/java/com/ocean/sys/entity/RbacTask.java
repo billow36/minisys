@@ -1,6 +1,9 @@
 package com.ocean.sys.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
@@ -11,11 +14,22 @@ import org.hibernate.validator.constraints.NotBlank;
 //JPA标识
 @Entity
 @Table(name = "RBAC_TASK")
-public class RbacTask extends IdEntity {
+public class RbacTask {
+	protected Long id;
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String title;
 	private String description;
 	private RbacUser user;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	// JSR303 BeanValidator的校验规则
 	@NotBlank

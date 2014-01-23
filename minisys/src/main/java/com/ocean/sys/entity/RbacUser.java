@@ -1,29 +1,22 @@
 package com.ocean.sys.entity;
 
 import java.util.Date;
-import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.validator.constraints.NotBlank;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.google.common.collect.ImmutableList;
 
 @Entity
 @Table(name = "RBAC_USER")
@@ -47,6 +40,8 @@ public class RbacUser extends DataEntity {
 	private int accountStatus;//状态，0--离线，1--在线
 	private Date registTime;//注册时间
 	
+	private RbacUserExtInfo userExtInfo;//用户扩展信息
+	private RbacUserSafe userSafe;//用户安全
 	public RbacUser(){
 		
 	}
@@ -208,6 +203,20 @@ public class RbacUser extends DataEntity {
 	 */
 	public void setSalt(String salt) {
 		this.salt = salt;
+	}
+	@OneToOne(optional = true,cascade=CascadeType.ALL,mappedBy="user")
+	public RbacUserExtInfo getUserExtInfo() {
+		return userExtInfo;
+	}
+	public void setUserExtInfo(RbacUserExtInfo userExtInfo) {
+		this.userExtInfo = userExtInfo;
+	}
+	@OneToOne(optional = true,cascade=CascadeType.ALL,mappedBy="user")
+	public RbacUserSafe getUserSafe() {
+		return userSafe;
+	}
+	public void setUserSafe(RbacUserSafe userSafe) {
+		this.userSafe = userSafe;
 	}
 	
 }
