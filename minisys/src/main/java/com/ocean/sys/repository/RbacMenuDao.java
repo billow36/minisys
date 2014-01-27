@@ -9,6 +9,5 @@ import com.ocean.sys.entity.RbacMenu;
 
 
 public interface RbacMenuDao extends PagingAndSortingRepository<RbacMenu, Long> {
-	@Query()
-	List<RbacMenu> findByUserId(String userid);
+	List<RbacMenu> findById(Long id);
 }

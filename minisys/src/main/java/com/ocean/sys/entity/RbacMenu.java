@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +17,9 @@ import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 
 @Entity
 @Table(name = "RBAC_MENU")
@@ -64,7 +68,9 @@ public class RbacMenu {
 	public String getMenuName() {
 		return menuName;
 	}
-	@ManyToOne 
+	
+	@ManyToOne
+	@Fetch(FetchMode.JOIN)
 	@JoinColumn(name="PARENT_ID", updatable=false)
 	public RbacMenu getParent() {
 		return parent;
