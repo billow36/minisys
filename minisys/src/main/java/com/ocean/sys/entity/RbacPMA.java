@@ -23,9 +23,9 @@ public class RbacPMA extends DataEntity {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Long id;// 主键
-	private String privilegeId;
-	private String menuId;
-	private String actionId;
+	private Long privilegeId;
+	private Long menuId;
+	private Long actionId;
 
 	public RbacPMA() {
 
@@ -53,27 +53,27 @@ public class RbacPMA extends DataEntity {
 		this.id = id;
 	}
 	@Column(name="PRIVILEGE_ID")
-	public String getPrivilegeId() {
+	public Long getPrivilegeId() {
 		return privilegeId;
 	}
 
-	public void setPrivilegeId(String privilegeId) {
+	public void setPrivilegeId(Long privilegeId) {
 		this.privilegeId = privilegeId;
 	}
 	@Column(name="MENU_ID")
-	public String getMenuId() {
+	public Long getMenuId() {
 		return menuId;
 	}
 
-	public void setMenuId(String menuId) {
+	public void setMenuId(Long menuId) {
 		this.menuId = menuId;
 	}
 	@Column(name="ACTION_ID")
-	public String getActionId() {
+	public Long getActionId() {
 		return actionId;
 	}
 
-	public void setActionId(String actionId) {
+	public void setActionId(Long actionId) {
 		this.actionId = actionId;
 	}
 
