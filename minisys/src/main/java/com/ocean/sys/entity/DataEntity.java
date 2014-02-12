@@ -9,6 +9,7 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.DateBridge;
@@ -118,6 +119,7 @@ public abstract class DataEntity extends BaseEntity implements Serializable {
 	@Length(min=1, max=1)
 	@Field(index=Index.YES, analyze=Analyze.NO, store=Store.YES)
 	@Column(name="DELETE_FLAG")
+	@NotNull
 	public String getDelFlag() {
 		return delFlag;
 	}

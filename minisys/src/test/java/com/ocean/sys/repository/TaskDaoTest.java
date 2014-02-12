@@ -19,7 +19,7 @@ public class TaskDaoTest extends SpringTransactionalTestCase {
 
 	@Test
 	public void findTasksByUserId() throws Exception {
-		Page<RbacTask> tasks = taskDao.findByUserId(1L, new PageRequest(0, 100, Direction.ASC, "id"));
+		Page<RbacTask> tasks = taskDao.findByUserId(10000L, new PageRequest(0, 100, Direction.ASC, "id"));
 		assertEquals(5, tasks.getContent().size());
 		assertEquals(new Long(1), tasks.getContent().get(0).getId());
 
