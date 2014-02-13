@@ -12,10 +12,12 @@
 </head>
 
 <body>
-	<form id="loginForm" action="${ctx}/repair" method="post"
+	<form id="loginForm" action="${ctx}/repair/repairdb" method="post"
 		class="form-horizontal">
 		<input id="submit_btn" class="btn btn-primary" type="submit"
-			value="初始化" />
+			value="初始化" /> 
+		<input id="cancel_btn" class="btn" type="button"
+			value="返回" onclick="history.back()" />
 	</form>
 
 	<script>

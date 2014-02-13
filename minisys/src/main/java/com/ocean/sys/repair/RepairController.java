@@ -23,9 +23,15 @@ public class RepairController {
 		System.out.println("进入get");
 		return "repair/init";
 	}
+	@RequestMapping(value = "repairdb")
+	public String repairdb() {
+		repairService.DeleteAll();
+		return "redirect:/login";
+	}
 
 	@RequestMapping(method = RequestMethod.POST)
 	public String fail(@RequestParam(FormAuthenticationFilter.DEFAULT_USERNAME_PARAM) String userName, Model model) {
+		System.out.println("进入fail ---post");
 		return "repair/init";
 	}
 	
