@@ -28,7 +28,6 @@
 				/static/** = anon
 				/api/** = anon
 				/register/** = anon
-				/repair/** = anon
 				/admin/** = roles[admin]
 				/** = user
 			</value>
