@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ocean.sys.entity.RbacUser;
+import com.ocean.sys.repair.RepairController;
 import com.ocean.sys.service.account.AccountService;
 
 /**
@@ -24,7 +25,6 @@ public class RegisterController {
 
 	@Autowired
 	private AccountService accountService;
-
 	@RequestMapping(method = RequestMethod.GET)
 	public String registerForm() {
 		return "account/register";

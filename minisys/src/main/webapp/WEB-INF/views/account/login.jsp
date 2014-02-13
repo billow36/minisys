@@ -47,7 +47,7 @@
 					type="checkbox" id="rememberMe" name="rememberMe" /> 记住我</label> <input
 					id="submit_btn" class="btn btn-primary" type="submit" value="登录" />
 				<a class="btn" href="${ctx}/register">注册</a>
-				<a class="btn" href="${ctx}/repair/info" >初始化</a>
+				<a class="btn" href="${ctx}/repair" >初始化</a>
 			</div>
 		</div>
 	</form>

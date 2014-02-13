@@ -18,11 +18,9 @@ public class RepairController {
 	@Autowired
 	private RepairDataService repairService;
 	
-	
 	@RequestMapping(method = RequestMethod.GET)
 	public String repairForm() {
-		
-		repairService.DeleteAll();
+		System.out.println("进入get");
 		return "repair/init";
 	}
 
@@ -36,5 +34,6 @@ public class RepairController {
 		System.out.println("进入初始化");
 		return "repair/init";
 	}
+	
 
 }
