@@ -13,42 +13,42 @@
 
 <body>
 	<form id="loginForm" action="${ctx}/login" method="post"
-		class= "form-horizontal">
+		class="form-horizontal">
 		<%
-			String error = (String) request
-					.getAttribute(FormAuthenticationFilter.DEFAULT_ERROR_KEY_ATTRIBUTE_NAME);
-			if (error != null) {
-		%>
-		<div class="alert alert-error input-medium controls">
-			<button class="close" data-dismiss="alert">×</button>
-			登录失败，请重试.
-		</div>
-		<%
-			}
-		%>
-		<div class="control-group">
-			<label for="username" class="control-label">名称:</label>
-			<div class="controls">
-				<input type="text" id="username" name="username" value="${username}"
-					class="input-medium required" />
+				String error = (String) request
+						.getAttribute(FormAuthenticationFilter.DEFAULT_ERROR_KEY_ATTRIBUTE_NAME);
+				if (error != null) {
+			%>
+			<div class="alert alert-error input-medium controls">
+				<button class="close" data-dismiss="alert">×</button>
+				登录失败，请重试.
 			</div>
-		</div>
-		<div class="control-group">
-			<label for="password" class="control-label">密码:</label>
-			<div class="controls">
-				<input type="password" id="password" name="password"
-					class="input-medium required" />
+			<%
+				}
+			%>
+			<div class="control-group">
+				<label for="username" class="control-label">名称:</label>
+				<div class="controls">
+					<input type="text" id="username" name="username"
+						value="${username}" class="input-medium required" />
+				</div>
 			</div>
-		</div>
+			<div class="control-group">
+				<label for="password" class="control-label">密码:</label>
+				<div class="controls">
+					<input type="password" id="password" name="password"
+						class="input-medium required" />
+				</div>
+			</div>
 
-		<div class="control-group">
-			<div class="controls">
-				<label class="checkbox" for="rememberMe"><input
-					type="checkbox" id="rememberMe" name="rememberMe" /> 记住我</label> <input
-					id="submit_btn" class="btn btn-primary" type="submit" value="登录" />
-				<a class="btn" href="${ctx}/register">注册</a>
+			<div class="control-group">
+				<div class="controls">
+					<label class="checkbox" for="rememberMe"><input
+						type="checkbox" id="rememberMe" name="rememberMe" /> 记住我</label> <input
+						id="submit_btn" class="btn btn-primary" type="submit" value="登录" />
+					<a class="btn" href="${ctx}/register">注册</a>
+				</div>
 			</div>
-		</div>
 	</form>
 
 	<script>
