@@ -1,6 +1,5 @@
 package com.ocean.sys.repair;
 
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +16,7 @@ import com.ocean.sys.repository.RbacPositionDao;
 import com.ocean.sys.repository.RbacPrivilegeDao;
 import com.ocean.sys.repository.RbacRoleDao;
 import com.ocean.sys.repository.RbacRolePrivilegeDao;
+import com.ocean.sys.repository.RbacTaskDao;
 import com.ocean.sys.repository.RbacUserDao;
 import com.ocean.sys.repository.RbacUserExtDao;
 import com.ocean.sys.repository.RbacUserGroupDao;
@@ -73,6 +73,8 @@ public class RepairDataService {
 	private RbacGroupDao groupDao;
 	@Autowired
 	private RbacPrivilegeDao privilegeDao;
+	@Autowired
+	private RbacTaskDao taskDao;
 	@Transactional
 //	@RequiresPermissions("sys:admin")
 	public void DeleteAll() {
@@ -82,7 +84,7 @@ public class RepairDataService {
 		userGroupDao.deleteAll();
 		rolePrivilegeDao.deleteAll();
 		userPositionDao.deleteAll();
-
+		taskDao.deleteAll();
 		// 删除用户扩展信息
 		userextDao.deleteAll();
 		// 删除用户信息
