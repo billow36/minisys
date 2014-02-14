@@ -45,29 +45,32 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	/**
 	 * 认证回调函数,登录时调用.
 	 */
+	
 	@Override
-	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException {
+	protected AuthenticationInfo doGetAuthenticationInfo(
+			AuthenticationToken authcToken) throws AuthenticationException {
 		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
 		RbacUser user = accountService.findUserByLoginName(token.getUsername());
 		if (user != null) {
 			byte[] salt = Encodes.decodeHex(user.getSalt());
-			return new SimpleAuthenticationInfo(new ShiroUser(user.getId(), user.getLoginId(), user.getName()),
-					user.getPassword(), ByteSource.Util.bytes(salt), getName());
-		} else {
-			return null;
+			return new SimpleAuthenticationInfo(new ShiroUser(user.getId(),
+					user.getLoginId(), user.getName()), user.getPassword(),
+					ByteSource.Util.bytes(salt), getName());
 		}
+		return null;
 	}
 
 	/**
 	 * 授权查询回调函数, 进行鉴权但缓存中无用户的授权信息时调用.
 	 */
 	@Override
-	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+	protected AuthorizationInfo doGetAuthorizationInfo(
+			PrincipalCollection principals) {
 		ShiroUser shiroUser = (ShiroUser) principals.getPrimaryPrincipal();
 		RbacUser user = accountService.findUserByLoginName(shiroUser.loginName);
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-		//info.addRoles(user.getRoleList());
-		//将角色信息添加到进来
+		// info.addRoles(user.getRoleList());
+		// 将角色信息添加到进来
 		return info;
 	}
 
@@ -76,7 +79,8 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	 */
 	@PostConstruct
 	public void initCredentialsMatcher() {
-		HashedCredentialsMatcher matcher = new HashedCredentialsMatcher(AccountService.HASH_ALGORITHM);
+		HashedCredentialsMatcher matcher = new HashedCredentialsMatcher(
+				AccountService.HASH_ALGORITHM);
 		matcher.setHashIterations(AccountService.HASH_INTERATIONS);
 
 		setCredentialsMatcher(matcher);

@@ -1,5 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8"%>
 <%@ include file="/WEB-INF/include/taglib.jsp"%>
+<%@ page
+	import="org.apache.shiro.web.filter.authc.FormAuthenticationFilter"%>
+<%@ page import="org.apache.shiro.authc.ExcessiveAttemptsException"%>
+<%@ page import="org.apache.shiro.authc.IncorrectCredentialsException"%>
 <html>
 <head>
 <meta charset="utf-8" />
@@ -40,41 +44,58 @@
 		<!-- /login-header -->
 
 		<div id="login-content" class="clearfix">
-			<form action="./" />
-			<fieldset>
-				<div class="control-group">
-					<label class="control-label" for="username">用户名</label>
-					<div class="controls">
-						<input type="text" class="" id="username" />
-					</div>
+			<form id="loginForm" action="${ctx}/login" method="post">
+				<%
+					String error = (String) request
+							.getAttribute(FormAuthenticationFilter.DEFAULT_ERROR_KEY_ATTRIBUTE_NAME);
+					if (error != null) {
+				%>
+				<div class="alert alert-error input-medium controls">
+					<button class="close" data-dismiss="alert">×</button>
+					登录失败，请重试.
 				</div>
-				<div class="control-group">
-					<label class="control-label" for="password">密码</label>
-					<div class="controls">
-						<input type="password" class="" id="password" />
+				<%
+					}
+				%>
+				<fieldset>
+
+					<div class="control-group">
+						<label for="username" class="control-label">名称:</label>
+						<div class="controls">
+							<input type="text" id="username" name="username"
+								value="${username}" class="input-medium required" />
+						</div>
 					</div>
+
+					<div class="control-group">
+						<label for="password" class="control-label">密码:</label>
+						<div class="controls">
+							<input type="password" id="password" name="password"
+								class="input-medium required" />
+						</div>
+					</div>
+				</fieldset>
+
+				<div id="remember-me" class="pull-left">
+					<input type="checkbox" name="remember" id="remember" /> <label
+						id="remember-label" for="remember">记住用户名</label>
 				</div>
-			</fieldset>
 
-			<div id="remember-me" class="pull-left">
-				<input type="checkbox" name="remember" id="remember" /> <label
-					id="remember-label" for="remember">记住用户名</label>
-			</div>
-
-			<div class="pull-right">
-				<button type="submit" class="btn btn-warning btn-large">登陆
-				</button>
-			</div>
+				<div class="pull-right">
+					<button type="submit" class="btn btn-warning btn-large">登陆
+					</button>
+				</div>
 			</form>
 
 		</div>
+
 		<!-- /login-content -->
 
 
 		<div id="login-extra">
 
 			<p>
-				没有帐户? <a href="javascript:;">注册</a>
+				没有帐户? <a href="${ctx}/register">注册用户</a>
 			</p>
 
 			<p>
@@ -86,15 +107,15 @@
 
 	</div>
 	<!-- /login-wrapper -->
-
-
-
 	<!-- Le javascript
 ================================================== -->
 	<!-- Placed at the end of the document so the pages load faster -->
 	<script src="${ctxStatic}/jquery/jquery-1.9.1.min.js"></script>
-
 	<script src="${ctxStatic}/bootstrap/2.3.2/js/bootstrap.min.js"></script>
-
+	<script>
+		$(document).ready(function() {
+			$("#loginForm").validate();
+		});
+	</script>
 </body>
 </html>
