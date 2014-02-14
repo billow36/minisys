@@ -27,7 +27,7 @@
 
 <body>
 	<div class="container">
-		<%@ include file="/WEB-INF/layouts/header.jsp"%>
+		<!-- %@ include file="/WEB-INF/layouts/header.jsp"% -->
 		<div id="content">
 			<sitemesh:body/>
 		</div>
