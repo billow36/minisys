@@ -21,7 +21,7 @@ public class Global {
 	/**
 	 * 属性文件加载对象
 	 */
-	private static PropertiesLoader propertiesLoader = new PropertiesLoader("application.properties");
+	private static PropertiesLoader propertiesLoader = new PropertiesLoader("app.properties");
 	
 	/**
 	 * 获取配置
@@ -48,7 +48,7 @@ public class Global {
 	 * @return
 	 */
 	public static String getSystemName(){
-		return getConfig("systemName");
+		return getConfig("productName");
 	}
 	/**
 	 * 获取前端根路径

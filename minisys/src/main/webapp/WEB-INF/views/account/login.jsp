@@ -63,7 +63,7 @@
 						<label for="username" class="control-label">名称:</label>
 						<div class="controls">
 							<input type="text" id="username" name="username"
-								value="${username}" class="input-medium required" />
+								value="${username}" class="input-medium required"  style="height:30px"/>
 						</div>
 					</div>
 
@@ -71,7 +71,7 @@
 						<label for="password" class="control-label">密码:</label>
 						<div class="controls">
 							<input type="password" id="password" name="password"
-								class="input-medium required" />
+								class="input-medium required" style="height:30px"/>
 						</div>
 					</div>
 				</fieldset>

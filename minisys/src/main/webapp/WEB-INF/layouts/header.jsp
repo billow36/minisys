@@ -1,10 +1,11 @@
-<%@ page language="java" pageEncoding="UTF-8" %>
+<%@ page language="java" pageEncoding="UTF-8" import="com.ocean.sys.common.Global" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <div id="header">
 	<div id="title">
-	    <h1><a href="${ctx}">MiniSys示例</a>
+	    <h1><a href="${ctx}"><%=Global.getSystemName() %></a></h1>
 	    <shiro:user>
 			<div class="btn-group pull-right">
 				<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
@@ -23,6 +24,6 @@
 				</ul>
 			</div>
 		</shiro:user>
-		</h1>
+
 	</div>
 </div>

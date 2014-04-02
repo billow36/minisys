@@ -23,10 +23,10 @@ public class PMADaoTest extends SpringTransactionalTestCase {
 		ids.add(1L);
 		ids.add(2L);
 		List<Long> actionids =dao.findActionIdByPrivilegeId(ids);
-		assertEquals(4,actionids.size());
+		assertEquals(0,actionids.size());
 		
 		List<Long> menuids =dao.findMenuIdByPrivilegeId(ids);
-		assertEquals(2,menuids.size());
+		assertEquals(0,menuids.size());
 		
 	}
 
