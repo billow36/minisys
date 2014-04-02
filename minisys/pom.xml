@@ -5,7 +5,7 @@
 	<artifactId>minisys</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>Springside :: MiniSys :: QuickStart</name>
+	<name>MiniSys</name>
 
 	<properties>
 		<!-- 主要依赖库的版本定义 -->
@@ -34,22 +34,22 @@
 		<java.version>1.6</java.version>
 
 		<!-- 项目属性 -->
-		<!--
+		
 		<jdbc.driver.groupId>com.h2database</jdbc.driver.groupId>
 		<jdbc.driver.artifactId>h2</jdbc.driver.artifactId>
 		<jdbc.driver.version>${h2.version}</jdbc.driver.version>
-		-->	
+		<!--
 		<jdbc.driver.groupId>mysql</jdbc.driver.groupId>
 		<jdbc.driver.artifactId>mysql-connector-java</jdbc.driver.artifactId>
 		<jdbc.driver.version>5.1.22</jdbc.driver.version>
-		
+		-->	
 	</properties>
 
 	<prerequisites>
   		<maven>3.0.0</maven>
 	</prerequisites>
 
-	<!-- 设定插件仓库 如有Nexus私服, 取消注释并指向正确的服务器地址. 
+	<!-- 设定插件仓库 如有Nexus私服, 取消注释并指向正确的服务器地址. 	-->
 	<pluginRepositories> 
 		<pluginRepository> 
 			<id>nexus</id>
@@ -60,7 +60,7 @@
 			</snapshots>
 		</pluginRepository>
 	</pluginRepositories>
-	-->
+
 
 	<!-- 依赖项定义 -->
 	<dependencies>
