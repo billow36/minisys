@@ -45,11 +45,15 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	/**
 	 * 认证回调函数,登录时调用.
 	 */
-	
+
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(
 			AuthenticationToken authcToken) throws AuthenticationException {
+
 		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
+		System.out.println("-------------认证回调函数,登录时调用----------");
+		System.out.println("-------------用户名------------"+ token.getUsername());
+		System.out.println("-------------密码------------"+ String.valueOf(token.getPassword()));
 		RbacUser user = accountService.findUserByLoginName(token.getUsername());
 		if (user != null) {
 			byte[] salt = Encodes.decodeHex(user.getSalt());
@@ -66,6 +70,8 @@ public class ShiroDbRealm extends AuthorizingRealm {
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(
 			PrincipalCollection principals) {
+		System.out
+				.println("-------------授权查询回调函数, 进行鉴权但缓存中无用户的授权信息时调用.----------");
 		ShiroUser shiroUser = (ShiroUser) principals.getPrimaryPrincipal();
 		RbacUser user = accountService.findUserByLoginName(shiroUser.loginName);
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
