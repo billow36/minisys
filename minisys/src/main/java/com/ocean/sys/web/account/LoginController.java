@@ -35,8 +35,8 @@ public class LoginController {
 	@RequestMapping(method = RequestMethod.POST)
 	public String login(String username,String password, Model model) {
 		try {
-			System.out.println("------------用户名-----------"+username);
-			System.out.println("------------密码-----------"+password);
+			System.out.println("------------login用户名-----------"+username);
+			System.out.println("------------login密码-----------"+password);
 			model.addAttribute(FormAuthenticationFilter.DEFAULT_USERNAME_PARAM, username);
 			//使用权限工具进行用户登录，登录成功后跳到shiro配置的successUrl中，与下面的return没什么关系！
 			SecurityUtils.getSubject().login(new UsernamePasswordToken(username, password));
